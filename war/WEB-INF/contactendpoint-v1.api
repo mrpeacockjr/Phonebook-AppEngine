@@ -1,0 +1,233 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://phonebookexample.appspot.com/_ah/api",
+  "name" : "contactendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://phonebookexample.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "example.com",
+  "ownerName" : "example.com",
+  "packagePath" : "phonebook",
+  "methods" : {
+    "contactendpoint.updateContact" : {
+      "path" : "contact",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactEndpoint.updateContact",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "contactendpoint.insertContact" : {
+      "path" : "contact",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactEndpoint.insertContact",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "contactendpoint.getContact" : {
+      "path" : "contact/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactEndpoint.getContact",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "contactendpoint.removeContact" : {
+      "path" : "contact/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactEndpoint.removeContact",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "contactendpoint.listContact" : {
+      "path" : "contact",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactEndpoint.listContact",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Contact" : {
+        "id" : "Contact",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "contactId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "userId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "contactFirstName" : {
+            "type" : "string"
+          },
+          "contactLastName" : {
+            "type" : "string"
+          },
+          "contactPhoneNumber" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Contact" : {
+        "id" : "CollectionResponse_Contact",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Contact"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.example.phonebook.ContactEndpoint.updateContact" : {
+        "request" : {
+          "$ref" : "Contact"
+        },
+        "response" : {
+          "$ref" : "Contact"
+        }
+      },
+      "com.example.phonebook.ContactEndpoint.insertContact" : {
+        "request" : {
+          "$ref" : "Contact"
+        },
+        "response" : {
+          "$ref" : "Contact"
+        }
+      },
+      "com.example.phonebook.ContactEndpoint.getContact" : {
+        "response" : {
+          "$ref" : "Contact"
+        }
+      },
+      "com.example.phonebook.ContactEndpoint.removeContact" : {
+      },
+      "com.example.phonebook.ContactEndpoint.listContact" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Contact"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://phonebookexample.appspot.com/_ah/api",
+  "name" : "contactcopyendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://phonebookexample.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "example.com",
+  "ownerName" : "example.com",
+  "packagePath" : "phonebook",
+  "methods" : {
+    "contactcopyendpoint.listContactCopy" : {
+      "path" : "contactcopy",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactCopyEndpoint.listContactCopy",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "contactcopyendpoint.updateContactCopy" : {
+      "path" : "contactcopy",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactCopyEndpoint.updateContactCopy",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "contactcopyendpoint.removeContactCopy" : {
+      "path" : "contactcopy/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactCopyEndpoint.removeContactCopy",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "contactcopyendpoint.insertContactCopy" : {
+      "path" : "contactcopy",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactCopyEndpoint.insertContactCopy",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "contactcopyendpoint.getContactCopy" : {
+      "path" : "contactcopy/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.phonebook.ContactCopyEndpoint.getContactCopy",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "CollectionResponse_ContactCopy" : {
+        "id" : "CollectionResponse_ContactCopy",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "ContactCopy"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ContactCopy" : {
+        "id" : "ContactCopy",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "contactId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "userId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "contactFirstName" : {
+            "type" : "string"
+          },
+          "contactLastName" : {
+            "type" : "string"
+          },
+          "contactPhoneNumber" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.example.phonebook.ContactCopyEndpoint.listContactCopy" : {
+        "response" : {
+          "$ref" : "CollectionResponse_ContactCopy"
+        }
+      },
+      "com.example.phonebook.ContactCopyEndpoint.updateContactCopy" : {
+        "request" : {
+          "$ref" : "ContactCopy"
+        },
+        "response" : {
+          "$ref" : "ContactCopy"
+        }
+      },
+      "com.example.phonebook.ContactCopyEndpoint.removeContactCopy" : {
+      },
+      "com.example.phonebook.ContactCopyEndpoint.insertContactCopy" : {
+        "request" : {
+          "$ref" : "ContactCopy"
+        },
+        "response" : {
+          "$ref" : "ContactCopy"
+        }
+      },
+      "com.example.phonebook.ContactCopyEndpoint.getContactCopy" : {
+        "response" : {
+          "$ref" : "ContactCopy"
+        }
+      }
+    }
+  }
+}
